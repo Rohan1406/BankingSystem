@@ -2,13 +2,29 @@ package org.jsp.bankingProj;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "transactions")
 public class Transaction 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	@ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
 	private Account account;
+
+	@Column(name = "transaction_type", nullable = false)
 	private String transactionType;
+
+	@Column(name = "amount", nullable = false)
 	private double amount;
+	
+	@Column(name = "transaction_date", nullable = false)
 	private Date transactionDate;
+
 	public long getId() {
 		return id;
 	}
